@@ -3,7 +3,6 @@ import Header from "./components/Header";
 function App() {
   return (
     <div className="container">
-      <Header />
       <main className="main">
         <section className="section section-artist-detail trending claimed">
           <div className="page">
