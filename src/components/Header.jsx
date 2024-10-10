@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="page">
-        <a href="#" className="logo">
+        <a href="/" className="logo">
           <img src={Logo} alt="Viberate" /> Viberate
         </a>
 
@@ -20,10 +20,9 @@ const Header = () => {
               <button className="btn btn-menu more">More</button>
             </li>
           </ul>
-          {error && <p>{error.message}</p>}
-          {loading ? (
+          {error ? (
             <ul className="menu">
-              <li>Loading</li>
+              <li>{error.message}</li>
             </ul>
           ) : (
             <ul className="menu">

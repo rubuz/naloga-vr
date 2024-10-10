@@ -15,7 +15,7 @@ const useArtistData = (artistUuid) => {
           throw new Error("Something went wrong!");
         }
         const data = await response.json();
-        setArtistData(data);
+        setArtistData(data.data);
       } catch (error) {
         setError(error);
       } finally {

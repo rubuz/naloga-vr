@@ -10,14 +10,17 @@
 // );
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
 import App from "./App";
-import ArtistPage from "./components/ArtistPage";
+import Layout from "./Layout";
 import "./styles/styles.css";
+import ArtistPage from "./components/artistPage/ArtistPage";
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(
   <Router>
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -25,6 +28,5 @@ ReactDOM.render(
         <Route path=":artistUuid" element={<ArtistPage />} />
       </Route>
     </Routes>
-  </Router>,
-  document.getElementById("root")
+  </Router>
 );
