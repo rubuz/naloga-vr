@@ -1,5 +1,5 @@
 import Logo from "../assets/logo-v.svg";
-import useNavbarData from "../hooks/useNavbarData";
+import { useNavbarData } from "../context/NavbarContext";
 
 const Header = () => {
   const { data, loading, error } = useNavbarData();
@@ -20,19 +20,14 @@ const Header = () => {
               <button className="btn btn-menu more">More</button>
             </li>
           </ul>
-          {error ? (
-            <ul className="menu">
-              <li>{error.message}</li>
-            </ul>
-          ) : (
-            <ul className="menu">
-              {data.map((artist) => (
-                <li key={artist.artist_uuid}>
-                  <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
-                </li>
-              ))}
-            </ul>
-          )}
+
+          <ul className="menu">
+            {data.map((artist) => (
+              <li key={artist.artist_uuid}>
+                <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </header>

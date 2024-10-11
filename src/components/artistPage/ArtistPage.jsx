@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import useArtistData from "../../hooks/useArtistData";
 import TooltipSubGenre from "./TooltipSubGenre";
 import SocialList from "./SocialList";
 import Graph from "./Graph";
+import { useArtistData } from "../../context/ArtistContext";
 // import PlaceholderImg from "../../public/images/placeholders/placeholder-200x200.png";
 
 const ArtistPage = () => {
   const { artistUuid } = useParams();
-  const { artistData, loading, error } = useArtistData(artistUuid);
+  const { artistData, loading, error, fetchArtistData } = useArtistData();
 
-  // console.log(artistData);
-  // console.log(artistData.social_links);
-
-  if (artistData === null) {
-    if (loading) {
-      return <div>Loading...</div>;
+  useEffect(() => {
+    if (artistUuid) {
+      fetchArtistData(artistUuid);
     }
+  }, [artistUuid, fetchArtistData]);
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    }
+  const artist = useMemo(
+    () => artistData[artistUuid]?.data,
+    [artistData, artistUuid]
+  );
+
+  if (loading && !artist) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!artist) {
+    return <div>No artist data available.</div>;
   }
 
   return (
@@ -48,9 +58,9 @@ const ArtistPage = () => {
                         Booking Request
                       </button>
                       <h1 className="title">
-                        {artistData.name}
+                        {artist.name}
                         <div className="tooltip-wrapper">
-                          {artistData.claimed && (
+                          {artist.claimed && (
                             <>
                               <span className="profile-claimed">
                                 Profile claimed
@@ -59,7 +69,7 @@ const ArtistPage = () => {
                             </>
                           )}
                         </div>
-                        {artistData.trending && (
+                        {artist.trending && (
                           <span className="trending-icon">Trending</span>
                         )}
                       </h1>
@@ -76,21 +86,21 @@ const ArtistPage = () => {
                     <div className="row">
                       <label>Origin</label>
                       <a className="btn btn-filter-tag">
-                        {artistData.country.name}
+                        {artist.country.name}
                       </a>
                     </div>
 
                     <div className="row">
                       <label>Genre</label>
                       <span className="btn btn-filter-tag">
-                        {artistData.genre.name}
+                        {artist.genre.name}
                       </span>
                     </div>
 
                     <div className="row">
                       <label>Subgenres</label>
 
-                      {artistData.subgenres.map((subgenre) => (
+                      {artist.subgenres.map((subgenre) => (
                         <span key={subgenre.id} className="btn btn-filter-tag">
                           {subgenre.name}
                         </span>
@@ -104,14 +114,14 @@ const ArtistPage = () => {
                   </div>
 
                   <div className="footer-detail">
-                    <SocialList socials={artistData.social_links} />
+                    <SocialList socials={artist.social_links} />
                   </div>
                 </div>
               </div>
 
               <div className="col stats">
                 <div className="col-content">
-                  <Graph data={artistData.most_popular_in} />
+                  <Graph data={artist.most_popular_in} />
                 </div>
               </div>
             </div>

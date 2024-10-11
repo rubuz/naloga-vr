@@ -16,17 +16,23 @@ import App from "./App";
 import Layout from "./Layout";
 import "./styles/styles.css";
 import ArtistPage from "./components/artistPage/ArtistPage";
+import { NavbarProvider } from "./context/NavbarContext";
+import { ArtistProvider } from "./context/ArtistContext";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <Router>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<App />} />
-        <Route path=":artistUuid" element={<ArtistPage />} />
-      </Route>
-    </Routes>
-  </Router>
+  <NavbarProvider>
+    <ArtistProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            {/* <Route index element={<Layout />} /> */}
+            <Route path=":artistUuid" element={<ArtistPage />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ArtistProvider>
+  </NavbarProvider>
 );
