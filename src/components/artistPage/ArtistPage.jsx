@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useArtistData from "../../hooks/useArtistData";
 import TooltipSubGenre from "./TooltipSubGenre";
 import SocialList from "./SocialList";
+import Graph from "./Graph";
 // import PlaceholderImg from "../../public/images/placeholders/placeholder-200x200.png";
 
 const ArtistPage = () => {
@@ -107,51 +108,10 @@ const ArtistPage = () => {
                   </div>
                 </div>
               </div>
+
               <div className="col stats">
                 <div className="col-content">
-                  <div className="stats-sheet">
-                    <label>Most popular in</label>
-                    <div className="row">
-                      <h5>Ljubljana</h5>
-                      <div className="graph-line">
-                        <span className="line" style={{ width: "42%" }}>
-                          47%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <h5>Maribor</h5>
-                      <div className="graph-line">
-                        <span className="line" style={{ width: "22%" }}>
-                          23%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <h5>Celje</h5>
-                      <div className="graph-line">
-                        <span className="line" style={{ width: "15%" }}>
-                          15%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <h5>Postojna</h5>
-                      <div className="graph-line">
-                        <span className="line" style={{ width: "11%" }}>
-                          11%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <h5>Koper</h5>
-                      <div className="graph-line">
-                        <span className="line" style={{ width: "9%" }}>
-                          9%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <Graph data={artistData.most_popular_in} />
                 </div>
               </div>
             </div>

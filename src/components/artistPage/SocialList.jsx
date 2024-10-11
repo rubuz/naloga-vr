@@ -1,7 +1,6 @@
 import TooltipSocial from "./TooltipSocial";
 
 const SocialList = ({ socials }) => {
-  console.log(socials);
   return (
     <>
       <ul className="social-list">
