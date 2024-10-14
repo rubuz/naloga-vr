@@ -1,5 +1,3 @@
-import React from "react";
-
 const Tooltip = ({ subgenreData }) => {
   console.log(subgenreData);
   return (

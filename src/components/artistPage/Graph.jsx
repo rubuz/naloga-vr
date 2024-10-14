@@ -1,8 +1,6 @@
 import { Bar } from "@nivo/bar";
 
 const Graph = ({ data }) => {
-  // console.log(data);
-
   return (
     <div className="stats-sheet">
       <label>Most popular in</label>

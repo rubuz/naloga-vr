@@ -1,17 +1,16 @@
-import React, { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
+
+import PlaceholderImg from "../../assets/images/placeholders/placeholder-200x200.png";
+
+import useArtistData from "../../hooks/useArtistData";
+
 import TooltipSubGenre from "./TooltipSubGenre";
 import SocialList from "./SocialList";
 import Graph from "./Graph";
-import useArtistData from "../../hooks/useArtistData";
-import PlaceholderImg from "../../assets/images/placeholders/placeholder-200x200.png";
-// import PlaceholderImg from "../../public/images/placeholders/placeholder-200x200.png";
 
 const ArtistPage = () => {
   const { artistUuid } = useParams();
   const { artistData, loading, error } = useArtistData(artistUuid);
-
-  const errorTest = true;
 
   if (!artistData && loading) {
     return (
