@@ -1,4 +1,4 @@
-import { Bar, ResponsiveBar } from "@nivo/bar";
+import { Bar } from "@nivo/bar";
 
 const Graph = ({ data }) => {
   // console.log(data);

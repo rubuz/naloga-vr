@@ -1,6 +1,7 @@
 import React from "react";
 
-const Tooltip = () => {
+const Tooltip = ({ subgenreData }) => {
+  console.log(subgenreData);
   return (
     <div className="tooltip">
       <h3>Vote for subgenres</h3>

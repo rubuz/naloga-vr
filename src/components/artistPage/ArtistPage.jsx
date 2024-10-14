@@ -4,14 +4,45 @@ import TooltipSubGenre from "./TooltipSubGenre";
 import SocialList from "./SocialList";
 import Graph from "./Graph";
 import useArtistData from "../../hooks/useArtistData";
+import PlaceholderImg from "../../assets/images/placeholders/placeholder-200x200.png";
 // import PlaceholderImg from "../../public/images/placeholders/placeholder-200x200.png";
 
 const ArtistPage = () => {
   const { artistUuid } = useParams();
   const { artistData, loading, error } = useArtistData(artistUuid);
 
+  const errorTest = true;
+
   if (!artistData && loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          fontWeight: "bold",
+          display: "grid",
+          placeItems: "center",
+          height: "100dvh",
+          fontSize: "2rem",
+        }}
+      >
+        <p>Loading</p>
+      </div>
+    );
+  }
+
+  if (!artistData && error) {
+    return (
+      <div
+        style={{
+          fontWeight: "bold",
+          display: "grid",
+          placeItems: "center",
+          height: "100dvh",
+          fontSize: "2rem",
+        }}
+      >
+        <p>Something went wrong!</p>
+      </div>
+    );
   }
 
   return (
@@ -20,8 +51,12 @@ const ArtistPage = () => {
         <section className="section section-artist-detail trending claimed">
           <div className="page">
             <div className="col visual">
-              {/* <figure style={{ backgroundImage: `url(${PlaceholderImg})` }}> */}
-              <figure style={{ backgroundColor: "pink" }}>
+              <figure>
+                <img
+                  src={PlaceholderImg}
+                  alt={artistData.name}
+                  style={{ width: "100%" }}
+                />
                 <figcaption>
                   <button className="btn btn-claim-music-id">
                     Claim music_id
