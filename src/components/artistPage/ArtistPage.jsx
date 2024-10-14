@@ -3,34 +3,15 @@ import { useParams } from "react-router-dom";
 import TooltipSubGenre from "./TooltipSubGenre";
 import SocialList from "./SocialList";
 import Graph from "./Graph";
-import { useArtistData } from "../../context/ArtistContext";
+import useArtistData from "../../hooks/useArtistData";
 // import PlaceholderImg from "../../public/images/placeholders/placeholder-200x200.png";
 
 const ArtistPage = () => {
   const { artistUuid } = useParams();
-  const { artistData, loading, error, fetchArtistData } = useArtistData();
+  const { artistData, loading, error } = useArtistData(artistUuid);
 
-  useEffect(() => {
-    if (artistUuid) {
-      fetchArtistData(artistUuid);
-    }
-  }, [artistUuid, fetchArtistData]);
-
-  const artist = useMemo(
-    () => artistData[artistUuid]?.data,
-    [artistData, artistUuid]
-  );
-
-  if (loading && !artist) {
+  if (!artistData && loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (!artist) {
-    return <div>No artist data available.</div>;
   }
 
   return (
@@ -58,9 +39,9 @@ const ArtistPage = () => {
                         Booking Request
                       </button>
                       <h1 className="title">
-                        {artist.name}
+                        {artistData.name}
                         <div className="tooltip-wrapper">
-                          {artist.claimed && (
+                          {artistData.claimed && (
                             <>
                               <span className="profile-claimed">
                                 Profile claimed
@@ -69,7 +50,7 @@ const ArtistPage = () => {
                             </>
                           )}
                         </div>
-                        {artist.trending && (
+                        {artistData.trending && (
                           <span className="trending-icon">Trending</span>
                         )}
                       </h1>
@@ -86,21 +67,21 @@ const ArtistPage = () => {
                     <div className="row">
                       <label>Origin</label>
                       <a className="btn btn-filter-tag">
-                        {artist.country.name}
+                        {artistData.country.name}
                       </a>
                     </div>
 
                     <div className="row">
                       <label>Genre</label>
                       <span className="btn btn-filter-tag">
-                        {artist.genre.name}
+                        {artistData.genre.name}
                       </span>
                     </div>
 
                     <div className="row">
                       <label>Subgenres</label>
 
-                      {artist.subgenres.map((subgenre) => (
+                      {artistData.subgenres.map((subgenre) => (
                         <span key={subgenre.id} className="btn btn-filter-tag">
                           {subgenre.name}
                         </span>
@@ -114,14 +95,14 @@ const ArtistPage = () => {
                   </div>
 
                   <div className="footer-detail">
-                    <SocialList socials={artist.social_links} />
+                    <SocialList socials={artistData.social_links} />
                   </div>
                 </div>
               </div>
 
               <div className="col stats">
                 <div className="col-content">
-                  <Graph data={artist.most_popular_in} />
+                  <Graph data={artistData.most_popular_in} />
                 </div>
               </div>
             </div>

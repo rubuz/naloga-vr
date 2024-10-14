@@ -1,5 +1,5 @@
 import Logo from "../assets/logo-v.svg";
-import { useNavbarData } from "../context/NavbarContext";
+import useNavbarData from "../hooks/useNavbarData";
 
 const Header = () => {
   const { data, loading, error } = useNavbarData();
@@ -22,11 +22,17 @@ const Header = () => {
           </ul>
 
           <ul className="menu">
-            {data.map((artist) => (
-              <li key={artist.artist_uuid}>
-                <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
-              </li>
-            ))}
+            {loading ? (
+              <li>Loading...</li>
+            ) : error ? (
+              <li>Something went wrong!</li>
+            ) : (
+              data.map((artist) => (
+                <li key={artist.artist_uuid}>
+                  <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
+                </li>
+              ))
+            )}
           </ul>
         </nav>
       </div>
