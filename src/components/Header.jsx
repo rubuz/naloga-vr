@@ -1,4 +1,5 @@
 import Logo from "../assets/logo-v.svg";
+
 import useNavbarData from "../hooks/useNavbarData";
 
 const Header = () => {
@@ -20,19 +21,20 @@ const Header = () => {
               <button className="btn btn-menu more">More</button>
             </li>
           </ul>
-          {error ? (
-            <ul className="menu">
-              <li>{error.message}</li>
-            </ul>
-          ) : (
-            <ul className="menu">
-              {data.map((artist) => (
+
+          <ul className="menu">
+            {loading ? (
+              <li>Loading...</li>
+            ) : error ? (
+              <li>Something went wrong!</li>
+            ) : (
+              data.map((artist) => (
                 <li key={artist.artist_uuid}>
                   <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
                 </li>
-              ))}
-            </ul>
-          )}
+              ))
+            )}
+          </ul>
         </nav>
       </div>
     </header>
