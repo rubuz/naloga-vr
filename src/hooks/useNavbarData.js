@@ -8,14 +8,14 @@ const useNavbarData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const url = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (!data.length) {
       setLoading(true);
       const fetchData = async () => {
         try {
-          const response = await fetch(
-            "https://mocky.viberate.com/api/v1/navbar"
-          );
+          const response = await fetch(`${url}/navbar`);
           if (!response.ok) {
             throw new Error("Something went wrong!");
           }

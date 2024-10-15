@@ -8,13 +8,13 @@ const useArtistData = (artistUuid) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const url = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (!artistData) {
       const fetchArtistData = async () => {
         try {
-          const response = await fetch(
-            `https://mocky.viberate.com/api/v1/${artistUuid}`
-          );
+          const response = await fetch(`${url} + ${artistUuid}`);
           if (!response.ok) {
             throw new Error("Something went wrong!");
           }

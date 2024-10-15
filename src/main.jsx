@@ -6,10 +6,7 @@ import Header from "./components/Header";
 
 import "./styles/styles.css";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-
-root.render(
+const App = () => (
   <Router>
     <Header />
     <Routes>
@@ -17,3 +14,8 @@ root.render(
     </Routes>
   </Router>
 );
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(<App />);
