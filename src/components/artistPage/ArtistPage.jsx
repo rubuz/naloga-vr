@@ -52,12 +52,17 @@ const ArtistPage = () => {
             <div className="col visual">
               <figure>
                 <img
-                  src={PlaceholderImg}
+                  src={
+                    artistData.meta_image
+                      ? artistData.meta_image
+                      : PlaceholderImg
+                  }
                   alt={artistData.name}
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "scale-down",
+                    backgroundColor: "black",
                   }}
                 />
                 <figcaption>
