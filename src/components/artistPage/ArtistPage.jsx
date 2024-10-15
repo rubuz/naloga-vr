@@ -19,7 +19,7 @@ const ArtistPage = () => {
           fontWeight: "bold",
           display: "grid",
           placeItems: "center",
-          height: "100dvh",
+          height: "30dvh",
           fontSize: "2rem",
         }}
       >
@@ -35,7 +35,7 @@ const ArtistPage = () => {
           fontWeight: "bold",
           display: "grid",
           placeItems: "center",
-          height: "100dvh",
+          height: "30dvh",
           fontSize: "2rem",
         }}
       >
