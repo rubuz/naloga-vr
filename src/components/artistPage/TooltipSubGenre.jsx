@@ -1,5 +1,4 @@
-const Tooltip = ({ subgenreData }) => {
-  console.log(subgenreData);
+const Tooltip = () => {
   return (
     <div className="tooltip">
       <h3>Vote for subgenres</h3>
