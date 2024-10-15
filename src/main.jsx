@@ -1,21 +1,12 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import ArtistPage from "./components/artistPage/ArtistPage";
-import Header from "./components/Header";
+import App from "./App.jsx";
 
 import "./styles/styles.css";
 
-const App = () => (
-  <Router>
-    <Header />
-    <Routes>
-      <Route path=":artistUuid" element={<ArtistPage />} />
-    </Routes>
-  </Router>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
-
-const container = document.getElementById("root");
-const root = createRoot(container);
-
-root.render(<App />);

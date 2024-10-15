@@ -26,7 +26,6 @@ const useNavbarData = () => {
           setError(error);
         } finally {
           setLoading(false);
-          initialLoad.current = false;
         }
       };
       fetchData();

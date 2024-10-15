@@ -1,5 +1,7 @@
 import Logo from "../assets/logo-v.svg";
 
+import { Link } from "react-router-dom";
+
 import useNavbarData from "../hooks/useNavbarData";
 
 const Header = () => {
@@ -30,7 +32,9 @@ const Header = () => {
             ) : (
               data.map((artist) => (
                 <li key={artist.artist_uuid}>
-                  <a href={`/${artist.artist_uuid}`}>{artist.artist_name}</a>
+                  <Link to={`/${artist.artist_uuid}`}>
+                    {artist.artist_name}
+                  </Link>
                 </li>
               ))
             )}
