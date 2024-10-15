@@ -14,7 +14,7 @@ const useArtistData = (artistUuid) => {
     if (!artistData) {
       const fetchArtistData = async () => {
         try {
-          const response = await fetch(`${url} + ${artistUuid}`);
+          const response = await fetch(`${url}${artistUuid}`);
           if (!response.ok) {
             throw new Error("Something went wrong!");
           }
