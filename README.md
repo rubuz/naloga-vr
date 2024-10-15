@@ -17,7 +17,6 @@ The Artist Data App is a Single-Page Application (SPA) built with React and Vite
 - View detailed information about music artists, including genres, social media links, and popularity statistics.
 - Navigate to different artist pages using dynamic routing.
 - Cache artist data in session storage to reduce API calls and improve performance.
-- Display error messages for invalid or failed API requests.
 
 ## Built with
 
