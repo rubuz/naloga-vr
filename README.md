@@ -2,7 +2,7 @@
 
 The Artist Data App is a Single-Page Application (SPA) built with React and Vite. It fetches data from an API and allows users to view detailed information about music artists. The app displays various details such as genres, social media links, and statistics on the most popular cities for each artist.
 
-[![viberate.png](https://i.postimg.cc/YSzwpC7K/viberate.png)](https://postimg.cc/sBxLmy1w)
+[![vr-app.png](https://i.postimg.cc/brVDNSWs/vr-app.png)](https://postimg.cc/sGSDTxVr)
 
 ## Table of Contents
 
@@ -88,4 +88,4 @@ Matjaž - rubuz23@gmail.com
 
 Project link: [GitHub Repository](https://github.com/rubuz/naloga-vr.git)
 
-Live demo: [Artist Data App](https://weatherapp-k.vercel.app/)
+Live demo: [Artist Data App](https://artist-data.netlify.app/)
