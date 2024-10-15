@@ -54,7 +54,11 @@ const ArtistPage = () => {
                 <img
                   src={PlaceholderImg}
                   alt={artistData.name}
-                  style={{ width: "100%" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
                 />
                 <figcaption>
                   <button className="btn btn-claim-music-id">
